@@ -29,8 +29,8 @@
   "scripts": {
     "build": "electron-builder build",
     "start": "electron .",
-    "webpack": "webpack",
-    "webpack-watch": "webpack --watch"
+    "bundle": "webpack",
+    "bundle-watch": "webpack --watch"
   },
   "version": "0.0.1"
 }
