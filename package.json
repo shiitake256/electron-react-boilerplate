@@ -1,0 +1,36 @@
+{
+  "build": {
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "dependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/copy-webpack-plugin": "^5.0.0",
+    "@types/node": "^13.13.4",
+    "@types/webpack": "^4.41.12",
+    "copy-webpack-plugin": "^5.1.1",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "ts-loader": "^7.0.2",
+    "ts-node": "^8.9.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "main": ".webpack/main/bundle.js",
+  "name": "hello-electron",
+  "scripts": {
+    "build": "electron-builder build",
+    "start": "electron .",
+    "webpack": "webpack",
+    "webpack-watch": "webpack --watch"
+  },
+  "version": "0.0.1"
+}
