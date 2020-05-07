@@ -1,0 +1,30 @@
+directories:
+  output: dist
+linux:
+  publish:
+    provider: github
+  target: 
+    - AppImage
+    - snap
+    - rpm
+    - deb
+win:
+  publish:
+    provider: github
+  target: 
+    - nsis
+    - portable
+    # - appx
+    - squirrel
+    # - msi
+mac:
+  publish:
+    provider: github
+  target: 
+    - zip
+    # - pkg
+    # - dmg
+    # - mas
+    - tar.gz
+
+
