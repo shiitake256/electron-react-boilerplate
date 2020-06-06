@@ -1,14 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import 'w3-css/w3.css';
+import { AppRoot } from './components/AppRoot';
 
-class HelloWorld extends React.Component {
-    render() {
-        return (
-            <div>
-                Hello, React!
-            </div>
-        )
-    }
-};
-
-ReactDOM.render(<HelloWorld />, document.getElementsByTagName('body')[0]);
+const body = document.getElementsByTagName('body')[0]
+ReactDOM.render(<AppRoot />, body.appendChild(document.createElement('div')));
