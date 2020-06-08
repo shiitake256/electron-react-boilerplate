@@ -1,8 +1,9 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
+import { registerIpcHandlers } from './ipc-events';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
+if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
@@ -11,12 +12,15 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
+    webPreferences: {
+      nodeIntegration: false,
+      preload: path.resolve(__dirname, '../preload/bundle.js'),
+      contextIsolation: true,
+    },
   });
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
-  console.log(__dirname)
-  console.log(path.join(__dirname, '../renderer/index.html'))
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
@@ -25,7 +29,10 @@ const createWindow = () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+  registerIpcHandlers();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -44,5 +51,6 @@ app.on('activate', () => {
   }
 });
 
+app.allowRendererProcessReuse = true
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.

@@ -1,6 +1,7 @@
 directories:
   output: dist
 linux:
+  category: Utility
   publish:
     provider: github
   target: 
@@ -26,5 +27,8 @@ mac:
     # - dmg
     # - mas
     - tar.gz
-
-
+files:
+  - .webpack/**/*
+icon: .webpack/main/icons/icon
+squirrelWindows:
+  iconUrl: 'https://github.com/electron/electron/blob/master/default_app/icon.png'

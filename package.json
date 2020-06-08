@@ -6,27 +6,30 @@
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/lab": "^4.0.0-alpha.55",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.7",
     "electron-squirrel-startup": "^1.0.0",
+    "fontsource-roboto": "^2.1.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "w3-css": "^4.1.0"
+    "rxjs": "^6.5.5"
   },
   "devDependencies": {
-    "@types/copy-webpack-plugin": "^5.0.0",
-    "@types/node": "^13.13.4",
-    "@types/webpack": "^4.41.12",
-    "copy-webpack-plugin": "^5.1.1",
+    "@types/copy-webpack-plugin": "^6.0.0",
+    "@types/node": "^14.0.11",
+    "@types/react": "^16.9.8",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack": "^4.41.17",
+    "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.5.3",
-    "electron": "^8.2.5",
-    "electron-builder": "^22.6.0",
-    "electron-builder-squirrel-windows": "^22.6.0",
+    "electron": "^9.0.2",
+    "electron-builder": "^22.7.0",
+    "electron-builder-squirrel-windows": "^22.7.0",
+    "file-loader": "^6.0.0",
     "nodemon": "^2.0.4",
     "style-loader": "^1.2.1",
-    "ts-loader": "^7.0.2",
-    "ts-node": "^8.9.1",
-    "typescript": "^3.8.3",
+    "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.9.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },
@@ -40,5 +43,6 @@
     "release": "electron-builder build",
     "start": "electron ."
   },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "description": "Example application"
 }

@@ -3,10 +3,11 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import { HelloReact } from "./HelloReact";
-import { ExampleComponent } from "./ExampleComponent";
+import { PingPong } from "./PingPong";
+import { Clock } from "./Clock";
+// import { HelloReact2 } from "./HelloReact2";
+// import { HelloReact3 } from "./HelloReact3";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,8 +53,8 @@ export function AppRoot() {
       {(() => {
         const tabPanels = [
           () => <HelloReact></HelloReact>,
-          () => <ExampleComponent></ExampleComponent>,
-          () => <div>content3</div>,
+          () => <PingPong></PingPong>,
+          () => <Clock></Clock>,
         ];
         return (tabPanels[activeIndex] || (() => null))();
       })()}
