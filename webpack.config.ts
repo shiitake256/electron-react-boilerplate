@@ -49,8 +49,6 @@ const baseConfig: webpack.Configuration = {
       apply: compiler => {
         compiler.hooks.watchRun.tap('DetectWatchModePlugin', () => isWatchmode = true)
         compiler.hooks.afterEmit.tap('AfterEmitPlugin', (params) => {
-          console.log(emitted);
-          
           emitted[params.compiler.name] = true
           if (
             isWatchmode &&
