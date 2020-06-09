@@ -19,6 +19,7 @@ function onGetAccounts() {
 }
 
 function onFirePing(event: IpcMainInvokeEvent, arg: unknown) {
+  console.log(arg);
   return 'Pong from main';
 }
 export function registerIpcHandlers() {
