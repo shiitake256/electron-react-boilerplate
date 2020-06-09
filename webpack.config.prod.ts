@@ -6,26 +6,26 @@ import {
 } from './webpack.config.common'
 
 const additionalProdConfig: webpack.Configuration = {
-  mode: "production",
+    mode: "production",
 }
 
 const mainProdConfig: webpack.Configuration = {
-  ...mainCommonConfig,
-  ...additionalProdConfig,
+    ...mainCommonConfig,
+    ...additionalProdConfig,
 }
 
 const rendererProdConfig: webpack.Configuration = {
-  ...rendererCommonConfig,
-  ...additionalProdConfig,
+    ...rendererCommonConfig,
+    ...additionalProdConfig,
 }
 
 const preloadProdConfig: webpack.Configuration = {
-  ...preloadCommonConfig,
-  ...additionalProdConfig,
+    ...preloadCommonConfig,
+    ...additionalProdConfig,
 }
 
 export default [
-  mainProdConfig,
-  rendererProdConfig,
-  preloadProdConfig,
+    mainProdConfig,
+    rendererProdConfig,
+    preloadProdConfig,
 ]
