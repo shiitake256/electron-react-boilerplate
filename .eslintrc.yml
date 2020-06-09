@@ -25,9 +25,12 @@ rules:
     - argsIgnorePattern: "^_"
   "@typescript-eslint/explicit-module-boundary-types": "off"
   comma-dangle:
-    - "error"
-    - "always-multiline"
+    - warn
+    - always-multiline
   import/prefer-default-export: off
+  indent: 
+    - warn
+    - 4
 settings:
   import/resolver:
     node:
