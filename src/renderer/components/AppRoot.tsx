@@ -7,12 +7,6 @@ import { HelloReact } from './HelloReact'
 import { PingPong } from './PingPong'
 import { Clock } from './Clock'
 
-interface TabPanelProps {
-    children?: React.ReactNode
-    index: unknown
-    value: unknown
-}
-
 function a11yProps(index: unknown) {
     return {
         id: `simple-tab-${index}`,
