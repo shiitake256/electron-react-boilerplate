@@ -2,7 +2,20 @@ import * as path from "path";
 import * as webpack from "webpack";
 import CopyPlugin from "copy-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
+import { spawn, ChildProcessWithoutNullStreams } from "child_process";
 
+enum CONFIGURATION_NAME {
+  MAIN = 'main',
+  RENDERER = 'renderer',
+  PRELOAD = 'preload',
+}
+let electronProcess: ChildProcessWithoutNullStreams
+let emitted: { [key: string]: boolean; } = {};
+for(let name of Object.values(CONFIGURATION_NAME)){
+  emitted[name] = false
+}
+
+let isWatchmode = false
 const baseConfig: webpack.Configuration = {
   mode: "production",
   module: {
@@ -24,17 +37,45 @@ const baseConfig: webpack.Configuration = {
         loader: 'file-loader?name=../font/[name].[ext]'
       }
     ],
-
   },
 
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx"],
     plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
   },
+
+  plugins: [
+    {
+      apply: compiler => {
+        compiler.hooks.watchRun.tap('DetectWatchModePlugin', () => isWatchmode = true)
+        compiler.hooks.afterEmit.tap('AfterEmitPlugin', (params) => {
+          console.log(emitted);
+          
+          emitted[params.compiler.name] = true
+          if (
+            isWatchmode &&
+            Object.values(emitted).every(Boolean)
+          ) {
+            // Kill started process
+            if (electronProcess) {
+              console.log('\nKill electron');
+              electronProcess.kill("SIGTERM");
+            }
+            console.log('\nStart electron');
+            // Start process
+            electronProcess = spawn('yarn', ['run', 'start']);
+            electronProcess.stdout.on('data', data => process.stdout.write(data));
+            electronProcess.stderr.on('data', data => process.stderr.write(data));
+          }
+        });
+      }
+    }
+  ],
 };
 
 const mainConfig: webpack.Configuration = {
   ...baseConfig,
+  name: CONFIGURATION_NAME.MAIN,
   entry: "./src/main/index.ts",
   output: {
     path: path.resolve(__dirname, ".webpack/main"),
@@ -42,6 +83,7 @@ const mainConfig: webpack.Configuration = {
   },
   target: "electron-main",
   plugins: [
+    ...(baseConfig.plugins || []),
     new CopyPlugin({
       patterns: [
         {
@@ -63,6 +105,7 @@ const mainConfig: webpack.Configuration = {
 
 const rendererConfig: webpack.Configuration = {
   ...baseConfig,
+  name: CONFIGURATION_NAME.RENDERER,
   entry: "./src/renderer/index.tsx",
   output: {
     path: path.resolve(__dirname, ".webpack/renderer"),
@@ -70,6 +113,7 @@ const rendererConfig: webpack.Configuration = {
   },
   target: "electron-renderer",
   plugins: [
+    ...(baseConfig.plugins || []),
     new CopyPlugin({
       patterns: [
         {
@@ -86,8 +130,11 @@ const rendererConfig: webpack.Configuration = {
   ],
 };
 
+// console.log(rendererConfig);
+
 const preloadConfig: webpack.Configuration = {
   ...baseConfig,
+  name: CONFIGURATION_NAME.PRELOAD,
   entry: "./src/preload/index.ts",
   output: {
     path: path.resolve(__dirname, ".webpack/preload"),
