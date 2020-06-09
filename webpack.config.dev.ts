@@ -8,8 +8,8 @@ import {
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 
 let electronProcess: ChildProcessWithoutNullStreams
-let emitted: { [key: string]: boolean; } = {};
-for(let name of Object.values(CONFIGURATION_NAME)){
+const emitted: { [key: string]: boolean; } = {};
+for(const name of Object.values(CONFIGURATION_NAME)){
   emitted[name] = false
 }
 
@@ -40,8 +40,8 @@ const additionalDevConfig: webpack.Configuration = {
             electronProcess.stderr.on('data', data => process.stderr.write(data));
           }
         });
-      }
-    }
+      },
+    },
   ],
 }
 
