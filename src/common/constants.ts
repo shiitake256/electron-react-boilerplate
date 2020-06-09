@@ -1,4 +1,4 @@
 export enum IpcChannel {
-  GetAccounts = 'GetAccounts',
-  FirePing = 'FirePing',
+    GetAccounts = 'GetAccounts',
+    FirePing = 'FirePing',
 }

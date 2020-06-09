@@ -1,28 +1,28 @@
-import { ipcMain, IpcMainInvokeEvent } from 'electron';
-import { IpcChannel } from '@src/common/constants';
+import { ipcMain, IpcMainInvokeEvent } from 'electron'
+import { IpcChannel } from '@src/common/constants'
 
 function onGetAccounts() {
-  return [
-    {
-      id: 'test1',
-    },
-    {
-      id: 'test2',
-    },
-    {
-      id: 'test3',
-    },
-    {
-      id: 'test4',
-    },
-  ];
+    return [
+        {
+            id: 'test1',
+        },
+        {
+            id: 'test2',
+        },
+        {
+            id: 'test3',
+        },
+        {
+            id: 'test4',
+        },
+    ]
 }
 
 function onFirePing(event: IpcMainInvokeEvent, arg: unknown) {
-  console.log(arg);
-  return 'Pong from main';
+    console.log(arg)
+    return 'Pong from main'
 }
 export function registerIpcHandlers() {
-  ipcMain.handle(IpcChannel.GetAccounts, onGetAccounts);
-  ipcMain.handle(IpcChannel.FirePing, onFirePing);
+    ipcMain.handle(IpcChannel.GetAccounts, onGetAccounts)
+    ipcMain.handle(IpcChannel.FirePing, onFirePing)
 }
