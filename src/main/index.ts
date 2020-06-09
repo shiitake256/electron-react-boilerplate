@@ -23,7 +23,9 @@ const createWindow = () => {
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    if (process.env.NODE_ENV !== 'production') {
+        mainWindow.webContents.openDevTools()
+    }
 }
 
 // This method will be called when Electron has finished
