@@ -18,6 +18,7 @@ for(let name of Object.values(CONFIGURATION_NAME)){
 let isWatchmode = false
 const baseConfig: webpack.Configuration = {
   mode: "production",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
