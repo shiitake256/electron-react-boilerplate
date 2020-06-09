@@ -2,22 +2,14 @@ import * as path from "path";
 import * as webpack from "webpack";
 import CopyPlugin from "copy-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
-import { spawn, ChildProcessWithoutNullStreams } from "child_process";
 
 enum CONFIGURATION_NAME {
   MAIN = 'main',
   RENDERER = 'renderer',
   PRELOAD = 'preload',
 }
-let electronProcess: ChildProcessWithoutNullStreams
-let emitted: { [key: string]: boolean; } = {};
-for(let name of Object.values(CONFIGURATION_NAME)){
-  emitted[name] = false
-}
 
-let isWatchmode = false
-const baseConfig: webpack.Configuration = {
-  mode: "production",
+const baseCommonConfig: webpack.Configuration = {
   devtool: "inline-source-map",
   module: {
     rules: [
@@ -44,36 +36,10 @@ const baseConfig: webpack.Configuration = {
     extensions: [".tsx", ".ts", ".js", ".jsx"],
     plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
   },
-
-  plugins: [
-    {
-      apply: compiler => {
-        compiler.hooks.watchRun.tap('DetectWatchModePlugin', () => isWatchmode = true)
-        compiler.hooks.afterEmit.tap('AfterEmitPlugin', (params) => {
-          emitted[params.compiler.name] = true
-          if (
-            isWatchmode &&
-            Object.values(emitted).every(Boolean)
-          ) {
-            // Kill started process
-            if (electronProcess) {
-              console.log('\nKill electron');
-              electronProcess.kill("SIGTERM");
-            }
-            console.log('\nStart electron');
-            // Start process
-            electronProcess = spawn('yarn', ['run', 'start']);
-            electronProcess.stdout.on('data', data => process.stdout.write(data));
-            electronProcess.stderr.on('data', data => process.stderr.write(data));
-          }
-        });
-      }
-    }
-  ],
 };
 
-const mainConfig: webpack.Configuration = {
-  ...baseConfig,
+const mainCommonConfig: webpack.Configuration = {
+  ...baseCommonConfig,
   name: CONFIGURATION_NAME.MAIN,
   entry: "./src/main/index.ts",
   output: {
@@ -82,7 +48,7 @@ const mainConfig: webpack.Configuration = {
   },
   target: "electron-main",
   plugins: [
-    ...(baseConfig.plugins || []),
+    ...baseCommonConfig.plugins || [],
     new CopyPlugin({
       patterns: [
         {
@@ -96,14 +62,13 @@ const mainConfig: webpack.Configuration = {
         },
       ],
     }),
-
   ],
   // Workaround for the problem that the value of the variable "__dir" becomes "/" in the main process.
   node: false,
 };
 
-const rendererConfig: webpack.Configuration = {
-  ...baseConfig,
+const rendererCommonConfig: webpack.Configuration = {
+  ...baseCommonConfig,
   name: CONFIGURATION_NAME.RENDERER,
   entry: "./src/renderer/index.tsx",
   output: {
@@ -112,7 +77,7 @@ const rendererConfig: webpack.Configuration = {
   },
   target: "electron-renderer",
   plugins: [
-    ...(baseConfig.plugins || []),
+    ...baseCommonConfig.plugins || [],
     new CopyPlugin({
       patterns: [
         {
@@ -129,10 +94,8 @@ const rendererConfig: webpack.Configuration = {
   ],
 };
 
-// console.log(rendererConfig);
-
-const preloadConfig: webpack.Configuration = {
-  ...baseConfig,
+const preloadCommonConfig: webpack.Configuration = {
+  ...baseCommonConfig,
   name: CONFIGURATION_NAME.PRELOAD,
   entry: "./src/preload/index.ts",
   output: {
@@ -140,6 +103,11 @@ const preloadConfig: webpack.Configuration = {
     filename: "bundle.js",
   },
   target: "electron-preload",
-};
+}
 
-export default [mainConfig, rendererConfig, preloadConfig];
+export {
+  CONFIGURATION_NAME,
+  mainCommonConfig,
+  rendererCommonConfig,
+  preloadCommonConfig,
+}
