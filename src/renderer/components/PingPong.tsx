@@ -20,10 +20,11 @@ function PingPong() {
   const [message, setMessage] = React.useState<string>("aaa");
   const [open, setOpen] = React.useState<boolean>(false);
   React.useEffect(() => {
-    pingMessage.subscribe((value: string) => {
+    let subscription = pingMessage.subscribe((value: string) => {
       setMessage(value);
       setOpen(true);
     });
+    return () => subscription.unsubscribe()
   });
   return (
     <div>
