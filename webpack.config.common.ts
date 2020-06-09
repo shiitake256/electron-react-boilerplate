@@ -10,7 +10,6 @@ enum CONFIGURATION_NAME {
 }
 
 const baseCommonConfig: webpack.Configuration = {
-    devtool: "inline-source-map",
     module: {
         rules: [
             {
@@ -57,7 +56,7 @@ const mainCommonConfig: webpack.Configuration = {
                         return path.relative("src/main", targetPath);
                     },
                     globOptions: {
-                        ignore: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+                        ignore: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
                     },
                 },
             ],
@@ -86,7 +85,7 @@ const rendererCommonConfig: webpack.Configuration = {
                         return path.relative("src/renderer", targetPath);
                     },
                     globOptions: {
-                        ignore: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+                        ignore: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
                     },
                 },
             ],

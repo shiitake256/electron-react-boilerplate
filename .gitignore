@@ -1,4 +1,4 @@
 node_modules
-.webpack
+.webpack*
 dist
 *.env

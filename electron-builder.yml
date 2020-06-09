@@ -2,8 +2,8 @@ directories:
   output: dist
 files:
   - '!**/*'
-  - .webpack/**/*
-icon: .webpack/main/icons/icon
+  - .webpack.prod/**/*
+icon: .webpack.prod/main/icons/icon
 linux:
   category: Utility
   publish:
