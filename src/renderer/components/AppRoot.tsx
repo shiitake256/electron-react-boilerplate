@@ -6,8 +6,6 @@ import Tab from '@material-ui/core/Tab'
 import { HelloReact } from './HelloReact'
 import { PingPong } from './PingPong'
 import { Clock } from './Clock'
-// import { HelloReact2 } from "./HelloReact2";
-// import { HelloReact3 } from "./HelloReact3";
 
 interface TabPanelProps {
     children?: React.ReactNode
