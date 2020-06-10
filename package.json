@@ -46,7 +46,7 @@
     "name": "hello-electron",
     "scripts": {
         "build": "electron-builder build",
-        "bundle": "webpack",
+        "bundle": "webpack --config webpack.config.prod.ts",
         "bundle-watch": "nodemon --watch webpack.config.dev.ts --watch webpack.config.common.ts --exec 'webpack --watch --config webpack.config.dev.ts'",
         "release": "electron-builder build",
         "start": "electron .",
