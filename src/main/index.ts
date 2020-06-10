@@ -17,9 +17,9 @@ const createWindow = () => {
             preload: path.resolve(__dirname, '../preload/bundle.js'),
             contextIsolation: true,
         },
+        icon: path.resolve(__dirname, '../main/icons/icon.png'),
+        // icon: iconImage,
     })
-
-    // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
 
     // Open the DevTools.
