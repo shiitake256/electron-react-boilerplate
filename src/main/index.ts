@@ -17,7 +17,7 @@ const createWindow = () => {
             preload: path.resolve(__dirname, '../preload/bundle.js'),
             contextIsolation: true,
         },
-        icon: path.resolve(__dirname, '../main/icons/icon.png'),
+        icon: path.resolve(__dirname, '../main/icons/512.png'),
         // icon: iconImage,
     })
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))

@@ -3,7 +3,7 @@ directories:
 files:
   - '!**/*'
   - .webpack.prod/**/*
-icon: .webpack.prod/main/icons/icon
+icon: .webpack.prod/main/icons
 linux:
   category: Utility
   publish:
