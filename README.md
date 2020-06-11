@@ -1,6 +1,6 @@
 # electron-react-example
 
-Examples of Electron application
+Example of Electron application
 
 ## Overview
 
