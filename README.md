@@ -14,7 +14,7 @@ Examples of Electron application
 ## NPM scripts
 
 |Script|Description|
-|--|--|
+|----|----|
 |dev|Bundle and launch the app in development configuration|
 |bundle|Bundle the app in production configuration|
 |start|Launch the app in production configuration|
