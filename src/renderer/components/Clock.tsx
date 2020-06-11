@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@material-ui/core'
 import { dateTime } from '@src/renderer/store'
 
-function Clock() {
+const Clock: React.FC = () => {
     const [date, setDate] = React.useState<Date>(new Date())
 
     React.useEffect(() => {

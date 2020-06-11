@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }))
 
-export function AppRoot() {
+const AppRoot: React.FC = () => {
     const classes = useStyles()
     const [activeIndex, setActiveIndex] = React.useState<number>(0)
 
@@ -49,3 +49,5 @@ export function AppRoot() {
         </div>
     )
 }
+
+export { AppRoot }
