@@ -18,7 +18,7 @@ const PingPong: React.FC = () => {
             setOpen(true)
         })
         return () => subscription.unsubscribe()
-    })
+    }, [])
     return (
         <div>
             <Button variant="contained" color="secondary" onClick={handleClick}>

@@ -8,7 +8,7 @@ const Clock: React.FC = () => {
     React.useEffect(() => {
         const subscription = dateTime.subscribe((date) => setDate(date))
         return () => subscription.unsubscribe()
-    })
+    }, [])
     return <Box>{date.toString()}</Box>
 }
 
