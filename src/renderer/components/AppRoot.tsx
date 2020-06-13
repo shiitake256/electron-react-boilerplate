@@ -25,14 +25,10 @@ const AppRoot: React.FC = () => {
     const classes = useStyles()
     const [activeIndex, setActiveIndex] = React.useState<number>(0)
 
-    const handleChange = (event: React.ChangeEvent<Record<string, unknown>>, newValue: number) => {
-        setActiveIndex(newValue)
-    }
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Tabs value={activeIndex} onChange={handleChange} aria-label="simple tabs example">
+                <Tabs value={activeIndex} onChange={(_e, index) => setActiveIndex(index)} aria-label="simple tabs example">
                     <Tab label="Item One" {...a11yProps(0)} />
                     <Tab label="Item Two" {...a11yProps(1)} />
                     <Tab label="Item Three" {...a11yProps(2)} />
