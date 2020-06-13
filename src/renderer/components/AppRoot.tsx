@@ -34,14 +34,11 @@ const AppRoot: React.FC = () => {
                     <Tab label="Item Three" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
-            {(() => {
-                const tabPanels = [
-                    () => <HelloReact></HelloReact>,
-                    () => <PingPong></PingPong>,
-                    () => <Clock></Clock>,
-                ]
-                return (tabPanels[activeIndex] || (() => null))()
-            })()}
+            {([
+                () => <HelloReact></HelloReact>,
+                () => <PingPong></PingPong>,
+                () => <Clock></Clock>,
+            ][activeIndex] || (() => null))()}
         </div>
     )
 }
