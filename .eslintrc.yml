@@ -16,6 +16,7 @@ parserOptions:
   sourceType: module
 plugins:
   - "@typescript-eslint"
+  - only-warn
 rules:
   "@typescript-eslint/no-namespace": "off"
   "@typescript-eslint/no-unused-vars":
@@ -29,6 +30,7 @@ rules:
   indent: 
     - warn
     - 4
+  react/prop-types: off
 settings:
   import/resolver:
     node:
@@ -38,3 +40,4 @@ settings:
         - "webpack.config.prod.ts"
   react:
     version: detect
+
