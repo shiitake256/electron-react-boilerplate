@@ -9,7 +9,6 @@
         "@material-ui/lab": "^4.0.0-alpha.55",
         "@rjsf/core": "^2.0.2",
         "@rjsf/material-ui": "^2.0.2",
-        "ajv": "6.12.4",
         "electron-squirrel-startup": "^1.0.0",
         "electron-store": "^6.0.0",
         "fontsource-roboto": "^3.0.3",
