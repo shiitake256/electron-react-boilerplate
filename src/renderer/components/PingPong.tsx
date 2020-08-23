@@ -1,11 +1,11 @@
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText } from '@material-ui/core'
-import { IpcChannel } from '@src/common/constants'
+import { IpcChannel } from '@src/common/models'
 import { pingMessage } from '@src/renderer/store'
 import React from 'react'
 
 const handleClick = () => {
-    window.electron.invoke<string>(IpcChannel.FirePing, 'Ping from renderer').then((value) => {
-        pingMessage.next(value as string)
+    window.electron.invoke<string, string>(IpcChannel.FirePing, 'Ping from renderer').then((value) => {
+        pingMessage.next(value)
     })
 }
 

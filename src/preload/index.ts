@@ -1,9 +1,13 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron'
-import { IpcChannel } from '@src/common/constants'
+import { IpcChannel } from "@src/common/models"
+
 
 contextBridge.exposeInMainWorld('electron', {
     invoke: <T>(channel: IpcChannel, data: T) => ipcRenderer.invoke(channel, data),
-    on: (channel: IpcChannel, func: (event: IpcRendererEvent, ...args: unknown[]) => void) => {
+    send: <T>(channel: IpcChannel, data: T) => ipcRenderer.send(channel, data),
+    on: <T>(channel: IpcChannel, func: (event: IpcRendererEvent, ...args: T[]) => void) => {
         ipcRenderer.on(channel, func)
     },
+    removeListener: (channel: IpcChannel, listener: (...args: unknown[]) => void) => ipcRenderer.removeListener(channel, listener),
+    removeAllListeners: (channel: IpcChannel) => ipcRenderer.removeAllListeners(channel),
 })

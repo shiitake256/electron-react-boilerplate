@@ -1,6 +1,8 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 import * as path from 'path'
 import { registerIpcHandlers } from './ipc-events'
+import { menu } from './menu'
+import { initStore } from './store'
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -32,8 +34,13 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+    // const originalUserData = app.getPath('userData')
     createWindow()
+    Menu.setApplicationMenu(menu)
     registerIpcHandlers()
+    initStore()
+    console.log(app.getPath('userData'));
+
 })
 
 // Quit when all windows are closed.

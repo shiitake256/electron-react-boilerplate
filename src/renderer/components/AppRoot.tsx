@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab'
 import { HelloReact } from './HelloReact'
 import { PingPong } from './PingPong'
 import { Clock } from './Clock'
+import { AppSettingDialog } from './AppSettingDialog'
 
 function a11yProps(index: unknown) {
     return {
@@ -34,6 +35,7 @@ const AppRoot: React.FC = () => {
                     <Tab label="Item Three" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
+            <AppSettingDialog></AppSettingDialog>
             {([
                 () => <HelloReact></HelloReact>,
                 () => <PingPong></PingPong>,
