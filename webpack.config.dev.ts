@@ -7,12 +7,14 @@ import {
 } from './webpack.config.common'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 import path from 'path';
+import { merge } from 'webpack-merge'
 
 let electronProcess: ChildProcessWithoutNullStreams
 const emitted: { [key: string]: boolean; } = {};
 for (const name of Object.values(CONFIGURATION_NAME)) {
     emitted[name] = false
 }
+
 
 let isWatchmode = false
 const additionalDevConfig: webpack.Configuration = {
@@ -46,40 +48,38 @@ const additionalDevConfig: webpack.Configuration = {
     ],
 }
 
-const mainDevConfig: webpack.Configuration = {
-    ...mainCommonConfig,
-    ...additionalDevConfig,
-    plugins: [
-        ...mainCommonConfig.plugins || [],
-        ...additionalDevConfig.plugins || [],
-    ],
-    output: {
-        path: path.resolve(__dirname, ".webpack.dev/main"),
-        filename: "bundle.js",
+const mainDevConfig = merge(
+    mainCommonConfig,
+    additionalDevConfig,
+    <webpack.Configuration>{
+        output: {
+            path: path.resolve(__dirname, ".webpack.dev/main"),
+            filename: "bundle.js",
+        },
     },
-}
+)
 
-const rendererDevConfig: webpack.Configuration = {
-    ...rendererCommonConfig,
-    ...additionalDevConfig,
-    plugins: [
-        ...rendererCommonConfig.plugins || [],
-        ...additionalDevConfig.plugins || [],
-    ],
-    output: {
-        path: path.resolve(__dirname, ".webpack.dev/renderer"),
-        filename: "bundle.js",
+const rendererDevConfig = merge(
+    rendererCommonConfig,
+    additionalDevConfig,
+    <webpack.Configuration>{
+        output: {
+            path: path.resolve(__dirname, ".webpack.dev/renderer"),
+            filename: "bundle.js",
+        },
     },
-}
+)
 
-const preloadDevConfig: webpack.Configuration = {
-    ...preloadCommonConfig,
-    ...additionalDevConfig,
-    output: {
-        path: path.resolve(__dirname, ".webpack.dev/preload"),
-        filename: "bundle.js",
+const preloadDevConfig = merge(
+    preloadCommonConfig,
+    additionalDevConfig,
+    <webpack.Configuration>{
+        output: {
+            path: path.resolve(__dirname, ".webpack.dev/preload"),
+            filename: "bundle.js",
+        },
     },
-}
+)
 
 export default [
     mainDevConfig,
