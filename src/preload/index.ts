@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron'
-import { IpcChannel } from "@src/common/models"
+import { IpcChannel } from "@src/common/enums"
 
 
 contextBridge.exposeInMainWorld('electron', {

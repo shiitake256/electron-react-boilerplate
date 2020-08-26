@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText } from '@material-ui/core'
-import { IpcChannel } from '@src/common/models'
+import { IpcChannel } from '@src/common/enums'
 import { pingMessage } from '@src/renderer/store'
 import React from 'react'
 

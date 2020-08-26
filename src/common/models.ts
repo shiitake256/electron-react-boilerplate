@@ -1,10 +1,5 @@
-import Tabbouleh, {JSONSchema, JSONString} from 'tabbouleh'
 
-export type Folder = {
-    name: string,
-    id?: number
-    child?: Folder[]
-}
+import Tabbouleh, {JSONSchema, JSONString} from 'tabbouleh'
 
 @JSONSchema<AppSettings>({})
 export class AppSettings {
@@ -33,28 +28,3 @@ export class MailAccount {
 
 export const mailAccountSchema = Tabbouleh.generateJSONSchema(MailAccount)
 export const appSettingsSchema = Tabbouleh.generateJSONSchema(AppSettings)
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface IpcData<T = any> {
-    key: IpcDataKey
-    data: T
-}
-
-export enum IpcDataKey {
-    GetAccounts,
-    OpenAccountManager
-}
-
-export enum IpcChannel {
-    OpenAccountManager = 'OpenAccountManager',
-    FirePing = 'FirePing',
-    GetFolders = 'GetFolders',
-    OpenAppSettingDialog = "OpenSettings",
-    GetAccounts = "GetAccounts",
-    SetAccunts = "SetAccunts",
-    Test = "Test",
-    DownStream = "DownStream",
-    UpStream = "UpStream",
-    GetAppSettings = "GetAppSettings",
-    SetAppSettings = "SetAppSettings"
-}

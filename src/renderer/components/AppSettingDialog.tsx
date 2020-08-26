@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react'
 // import { SettingForm } from './SetteingForm'
 import { Dialog, DialogTitle, DialogContent, Button } from '@material-ui/core'
-import { IpcChannel, appSettingsSchema, AppSettings } from "@src/common/models"
+import { appSettingsSchema, AppSettings } from "@src/common/models"
+import { IpcChannel } from "@src/common/enums"
 import { MuiForm} from '@rjsf/material-ui'
 import { ISubmitEvent } from '@rjsf/core'
 

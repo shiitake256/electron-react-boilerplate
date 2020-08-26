@@ -1,5 +1,5 @@
 import { MenuItemConstructorOptions, Menu } from "electron";
-import { IpcChannel } from "@src/common/models";
+import { IpcChannel } from "@src/common/enums";
 
 
 const template: MenuItemConstructorOptions[] = [{

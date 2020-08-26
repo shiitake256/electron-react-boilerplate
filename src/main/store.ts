@@ -1,8 +1,9 @@
 import { BehaviorSubject } from 'rxjs'
 import { BrowserWindow } from 'electron'
 import ElectronStore from 'electron-store'
-import { Configs } from './constants'
-import { IpcChannel, AppSettings, appSettingsSchema } from '@src/common/models'
+import { Configs } from './enums'
+import { IpcChannel } from '@src/common/enums'
+import { AppSettings, appSettingsSchema} from '@src/common/models'
 import { utils } from '@rjsf/core'
 import { skip } from 'rxjs/operators'
 

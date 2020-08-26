@@ -1,5 +1,5 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
-import { IpcChannel } from '@src/common/models'
+import { IpcChannel } from '@src/common/enums'
 import { appSettings } from './store'
 
 export function registerIpcHandlers() {
