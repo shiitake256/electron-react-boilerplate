@@ -18,6 +18,12 @@ for (const name of Object.values(CONFIGURATION_NAME)) {
 
 let isWatchmode = false
 const additionalDevConfig: webpack.Configuration = {
+    watch: true,
+    watchOptions: {
+        ignored: [
+            '/node_modules/',
+        ],
+    },
     mode: "development",
     devtool: "inline-source-map",
     plugins: [

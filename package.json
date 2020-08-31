@@ -53,7 +53,7 @@
     "scripts": {
         "build": "electron-builder build",
         "bundle": "webpack --config webpack.config.prod.ts",
-        "dev": "nodemon --watch webpack.config.dev.ts --watch webpack.config.common.ts --watch tsconfig.json --exec 'webpack --watch --config webpack.config.dev.ts'",
+        "dev": "nodemon --watch webpack.config.dev.ts --watch webpack.config.common.ts --watch tsconfig.json --exec 'webpack --config webpack.config.dev.ts'",
         "release": "electron-builder build",
         "start": "electron .",
         "fix": "eslint --fix src",
