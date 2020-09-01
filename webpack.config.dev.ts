@@ -21,7 +21,7 @@ const additionalDevConfig: webpack.Configuration = {
     watch: true,
     watchOptions: {
         ignored: [
-            '/node_modules/',
+            /node_modules/,
         ],
     },
     mode: "development",
